@@ -14,7 +14,7 @@ import ListForm from '../ListForm/ListForm.jsx';
 function App() {
     //created state
     const [groceryItems,setGroceryItems] = useState([]);
-    
+
     useEffect(()=>{
         getGroceryItems()
     },[])
@@ -43,6 +43,28 @@ function App() {
             setGroceryItems(results.data)
         }).catch((err)=>{
             console.log('Get require failed',err)
+        })
+    }
+    
+    function AddItem(nameInput, quantity, unit){
+        
+        console.log('In AddItem');
+        axios({
+            url:'/groceries',
+            method: 'POST',
+            data:{
+                name: nameInput,
+                quantity: Number(quantity),
+                unit: unit
+
+            }
+        })
+        .then((results) => {
+            console.log('POST results', results)
+            getGroceryItems()
+        })
+        .catch((err) => {
+            console.log('POST failed', err)
         })
     }
 
@@ -74,7 +96,8 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <ListForm/>
+                <ListForm AddItem={AddItem}
+                />
 
                 <ListHeader/>
                 <div>
@@ -83,7 +106,6 @@ function App() {
                         <ListItem key={item.id}  delGroceryItem={delGroceryItem} item={item} buyItem={handleBuyItem}/>
 
                     )}
-                    
                 </div>
             </main>
         </div>
