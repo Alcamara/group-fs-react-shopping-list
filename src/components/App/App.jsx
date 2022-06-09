@@ -40,7 +40,7 @@ function App() {
                 
                 <div>
                     {groceryItems.map(item =>
-                        <ListItem item={item}/>
+                        <ListItem key={item.id}item={item}/>
                     )}
                     
                 </div>
