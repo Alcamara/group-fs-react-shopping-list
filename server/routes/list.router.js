@@ -51,6 +51,7 @@ router.delete('/:id',(req,res)=>{
         }).catch((err)=>{
             console.log('delete request failed');
         })
+    })
 
 router.put('/buy-item/:id', (req,res) =>{
     const queryText = `
