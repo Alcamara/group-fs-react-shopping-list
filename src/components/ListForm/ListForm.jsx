@@ -10,7 +10,7 @@ function ListForm() {
                     />
                 </div>
                 <div>
-                <label>Quantity:</label>
+                    <label>Quantity:</label>
                     <input
                         type='text'
                     />
@@ -18,6 +18,9 @@ function ListForm() {
                     <input
                         type='text'
                     />
+                </div>
+                <div>
+                    <button>Add Item</button>
                 </div>
             </form>
         </div>
