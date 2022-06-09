@@ -55,7 +55,7 @@ router.post('/', (req,res) =>{
         INSERT INTO "list" ("name", "quantity", "unity", "purchaseStatus")
         VALUES ($1, $2, $3, $4)`
     pool.query(queryText, [req.body.name, req.body.quantity, req.body.unity, false])
-        .then(res =>{
+        .then(() =>{
             console.log('list post success');
             res.sendStatus(201);
         })
