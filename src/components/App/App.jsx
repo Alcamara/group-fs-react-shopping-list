@@ -27,6 +27,7 @@ function App() {
             method:'DELETE'
         }).then(()=>{
             console.log('Delete request worked');
+            getGroceryItems()
         }).then((err)=>{
             console.log('Delete request failed');
         })

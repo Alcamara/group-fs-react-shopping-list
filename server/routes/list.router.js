@@ -31,7 +31,25 @@ router.post('/', (req,res) =>{
 })
 
 router.delete('/:id',(req,res)=>{
-    console.log('text',req.params.id);
+    console.log('text',);
+
+    const id = req.params.id;
+
+    const deleteQuery = `
+        DELETE FROM "list"
+        WHERE "id" = $1
+    `
+
+    const sqlParam = [
+        id
+    ]
+
+    pool.query(deleteQuery,sqlParam)
+        .then(()=>{
+            res.sendStatus(200)
+        }).catch((err)=>{
+            console.log('delete request failed');
+        })
 })
 
 
