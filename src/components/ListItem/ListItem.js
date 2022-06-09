@@ -2,7 +2,7 @@
 
 
 
-function ListItem({ item, buyItem }) {
+function ListItem({ item,delGroceryItem, buyItem }) {
     function handlePurchase(evt) {
         evt.preventDefault();
         buyItem(item.id);
@@ -16,7 +16,6 @@ function ListItem({ item, buyItem }) {
                 <span>Purchased</span> :
                 <span>
                     <button onClick={handlePurchase}>Buy</button>
-                    <button>Remove</button>
 
                     <button onClick={() => {
                         delGroceryItem(item.id)
