@@ -31,6 +31,28 @@ function App() {
         })
     }
 
+    function resetGroceryItems(){
+        axios({
+            url:'/groceries',
+            method:'PUT'
+        }).then((results)=>{
+            console.log('PUT',results.data);
+        }).catch((err)=>{
+            console.log('PUT failed', err)
+        })
+    }
+
+    function clearGroceryItems(){
+        axios({
+            url:'/groceries',
+            method:'DELETE'
+        }).then((results)=>{
+            console.log('DELETE',results.data);
+        }).catch((err)=>{
+            console.log('DELETE failed', err)
+        })
+    }
+
     return (
         <div className="App">
             <Header />

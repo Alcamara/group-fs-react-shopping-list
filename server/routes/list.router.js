@@ -15,4 +15,39 @@ router.get('/', (req, res) => {
     });
 });
 
+//This is the PUT route 
+router.put('/', (req, res) => {
+    const sqlQuery = `
+        UPDATE list
+        SET "purchaseStatus" = $1;
+    `;
+    const sqlParams = [
+        false    
+    ];
+    pool.query(sqlQuery, sqlParams)
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(`PUT failed, ${err}`);
+            res.sendStatus(500);
+        });
+}); 
+
+//This is the DELETE route 
+router.delete('/', (req, res) => {
+    const sqlQuery = `
+        DELETE * FROM list
+    `;
+    pool.query(sqlQuery)
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(`DELETE failed, ${err}`);
+            res.sendStatus(500);
+        });
+}); 
+
+
 module.exports = router;
