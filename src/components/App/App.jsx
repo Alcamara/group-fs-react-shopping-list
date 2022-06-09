@@ -10,15 +10,19 @@ import './App.css';
 function App() {
     //created state
     const [groceryItems,setGroceryItems] = useState([]);
+    
+    useEffect(()=>{
+        getGroceryItems()
+    },[])
 
     function getGroceryItems(){
 
         axios({
             url:'/groceries',
-            method:'GET',
+            method:'GET'
         }).then((results)=>{
             console.log('Get',results.data);
-            
+            setGroceryItems(results.data)
         }).catch((err)=>{
             console.log('Get require failed',err)
         })
