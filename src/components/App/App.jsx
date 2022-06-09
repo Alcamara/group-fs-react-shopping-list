@@ -19,6 +19,20 @@ function App() {
         getGroceryItems()
     },[])
 
+    function delGroceryItem (id){
+        console.log('in del', id);
+
+        axios({
+            url:'/groceries/'+id,
+            method:'DELETE'
+        }).then(()=>{
+            console.log('Delete request worked');
+            getGroceryItems()
+        }).then((err)=>{
+            console.log('Delete request failed');
+        })
+    }
+
     function getGroceryItems(){
 
         axios({
@@ -65,7 +79,9 @@ function App() {
                 <ListHeader/>
                 <div>
                     {groceryItems.map(item =>
-                        <ListItem key={item.id} item={item} buyItem={handleBuyItem}/>
+
+                        <ListItem key={item.id}  delGroceryItem={delGroceryItem} item={item} buyItem={handleBuyItem}/>
+
                     )}
                     
                 </div>

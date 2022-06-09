@@ -1,5 +1,7 @@
 
 
+
+
 function ListItem({ item, buyItem }) {
     function handlePurchase(evt){
         evt.preventDefault();
@@ -13,8 +15,14 @@ function ListItem({ item, buyItem }) {
             { item.purchaseStatus ? 
             <span>Purchased</span>:
             <span>
-                <button onClick={handlePurchase}>Buy</button>
+ <button onClick={handlePurchase}>Buy</button>
                 <button>Remove</button>
+                
+                <button onClick={()=>{
+                    delGroceryItem(item.id)
+                }}>Remove</button>
+       
+
             </span>
             
             }
