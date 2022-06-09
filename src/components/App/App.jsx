@@ -9,6 +9,7 @@ import './App.css';
 
 import ListItem from '../ListItem/ListItem'
 import ListHeader from '../ListHeader/ListHeader.jsx';
+import ListForm from '../ListForm/ListForm.jsx';
 
 function App() {
     //created state
@@ -35,7 +36,7 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <p>Under Construction...</p>
+                <ListForm/>
 
                 <ListHeader/>
                 <div>
