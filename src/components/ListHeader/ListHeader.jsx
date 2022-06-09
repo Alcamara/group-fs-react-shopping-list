@@ -1,9 +1,9 @@
-function ListHeader() {
+function ListHeader({reset, clear}) {
     return (
         <>
             <h2>Shopping List</h2>
-            <button onClick={resetGroceryItems}>Reset</button>
-            <button onClick={clearGroceryItems}>Clear</button>
+            <button onClick={reset}>Reset</button>
+            <button onClick={clear}>Clear</button>
         </>
     )
 }

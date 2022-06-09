@@ -37,6 +37,7 @@ function App() {
             method:'PUT'
         }).then((results)=>{
             console.log('PUT',results.data);
+            getGroceryItems()
         }).catch((err)=>{
             console.log('PUT failed', err)
         })
@@ -48,6 +49,7 @@ function App() {
             method:'DELETE'
         }).then((results)=>{
             console.log('DELETE',results.data);
+            getGroceryItems()
         }).catch((err)=>{
             console.log('DELETE failed', err)
         })
@@ -59,7 +61,11 @@ function App() {
             <main>
                 <p>Under Construction...</p>
 
-                <ListHeader/>
+                <ListHeader 
+                reset={resetGroceryItems}
+                clear={clearGroceryItems}
+                />
+
                 <div>
                     {groceryItems.map(item =>
                         <ListItem key={item.id}item={item}/>
