@@ -32,6 +32,30 @@ function App() {
         })
     }
 
+    function handleBuyItem(itemId){
+        console.log('in handlebuy item',itemId);
+        axios.put(`/groceries/buy-item/${itemId}`)
+            .then(() =>{
+                console.log('bu item success!')
+                getGroceryItems();
+            })
+            .catch((err) =>{
+                console.log('buy item failed', err);
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
     return (
         <div className="App">
             <Header />
@@ -41,7 +65,7 @@ function App() {
                 <ListHeader/>
                 <div>
                     {groceryItems.map(item =>
-                        <ListItem key={item.id}item={item}/>
+                        <ListItem key={item.id} item={item} buyItem={handleBuyItem}/>
                     )}
                     
                 </div>

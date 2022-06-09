@@ -30,5 +30,26 @@ router.post('/', (req,res) =>{
         })
 })
 
+router.put('/buy-item/:id', (req,res) =>{
+    const queryText = `
+    UPDATE "list"
+    SET "purchaseStatus" =$2
+    WHERE id =$1`
+    
+
+    pool.query(queryText, [req.params.id, true])
+        .then(() =>{
+            console.log('buy item success');
+            res.sendStatus(201)
+        })
+        .catch((err) =>{
+            console.log('buy item failed', err);
+            res.sendStatus(500);
+        })
+
+
+                        
+})
+
 
 module.exports = router;
