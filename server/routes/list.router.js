@@ -30,5 +30,9 @@ router.post('/', (req,res) =>{
         })
 })
 
+router.delete('/:id',(req,res)=>{
+    console.log('text',req.params.id);
+})
+
 
 module.exports = router;

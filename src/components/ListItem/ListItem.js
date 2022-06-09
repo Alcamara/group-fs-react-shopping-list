@@ -1,6 +1,6 @@
 
 
-function ListItem({ item }) {
+function ListItem({ item, delGroceryItem }) {
 
 
     return (
@@ -9,7 +9,10 @@ function ListItem({ item }) {
             <p>{item.quantity}{item.unity}</p>
             <span>
                 <button>Buy</button>
-                <button>Remove</button>
+                <button onClick={()=>{
+                    delGroceryItem(item.id)
+                }} 
+                    >Remove</button>
             </span>
         </div>
     );
