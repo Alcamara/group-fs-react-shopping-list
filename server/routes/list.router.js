@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
+
 //This is the PUT route 
 router.put('/', (req, res) => {
     const sqlQuery = `
@@ -48,6 +49,66 @@ router.delete('/', (req, res) => {
             res.sendStatus(500);
         });
 }); 
+
+router.post('/', (req,res) =>{
+    const queryText = `
+        INSERT INTO "list" ("name", "quantity", "unity", "purchaseStatus")
+        VALUES ($1, $2, $3, $4)`
+    pool.query(queryText, [req.body.name, req.body.quantity, req.body.unity, false])
+        .then(res =>{
+            console.log('list post success');
+            res.sendStatus(201);
+        })
+        .catch(err =>{
+            console.log('err in post to list', err);
+            res.sendStatus(500);
+        })
+})
+
+
+router.delete('/:id',(req,res)=>{
+    console.log('text',);
+
+    const id = req.params.id;
+
+    const deleteQuery = `
+        DELETE FROM "list"
+        WHERE "id" = $1
+    `
+
+    const sqlParam = [
+        id
+    ]
+
+    pool.query(deleteQuery,sqlParam)
+        .then(()=>{
+            res.sendStatus(200)
+        }).catch((err)=>{
+            console.log('delete request failed');
+        })
+    })
+
+router.put('/buy-item/:id', (req,res) =>{
+    const queryText = `
+    UPDATE "list"
+    SET "purchaseStatus" =$2
+    WHERE id =$1`
+    
+
+    pool.query(queryText, [req.params.id, true])
+        .then(() =>{
+            console.log('buy item success');
+            res.sendStatus(201)
+        })
+        .catch((err) =>{
+            console.log('buy item failed', err);
+            res.sendStatus(500);
+        })
+
+
+
+})
+
 
 
 module.exports = router;

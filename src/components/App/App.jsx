@@ -9,14 +9,29 @@ import './App.css';
 
 import ListItem from '../ListItem/ListItem'
 import ListHeader from '../ListHeader/ListHeader.jsx';
+import ListForm from '../ListForm/ListForm.jsx';
 
 function App() {
     //created state
     const [groceryItems,setGroceryItems] = useState([]);
-    
+
     useEffect(()=>{
         getGroceryItems()
     },[])
+
+    function delGroceryItem (id){
+        console.log('in del', id);
+
+        axios({
+            url:'/groceries/'+id,
+            method:'DELETE'
+        }).then(()=>{
+            console.log('Delete request worked');
+            getGroceryItems()
+        }).then((err)=>{
+            console.log('Delete request failed');
+        })
+    }
 
     function getGroceryItems(){
 
@@ -29,6 +44,52 @@ function App() {
         }).catch((err)=>{
             console.log('Get require failed',err)
         })
+    }
+    
+    function AddItem(nameInput, quantity, unit){
+        
+        console.log('In AddItem');
+        axios({
+            url:'/groceries',
+            method: 'POST',
+            data:{
+                name: nameInput,
+                quantity: Number(quantity),
+                unit: unit
+
+            }
+        })
+        .then((results) => {
+            console.log('POST results', results)
+            getGroceryItems()
+        })
+        .catch((err) => {
+            console.log('POST failed', err)
+        })
+    }
+
+    function handleBuyItem(itemId){
+        console.log('in handlebuy item',itemId);
+        axios.put(`/groceries/buy-item/${itemId}`)
+            .then(() =>{
+                console.log('bu item success!')
+                getGroceryItems();
+            })
+            .catch((err) =>{
+                console.log('buy item failed', err);
+            })
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     function resetGroceryItems(){
@@ -59,7 +120,8 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <p>Under Construction...</p>
+                <ListForm AddItem={AddItem}
+                />
 
                 <ListHeader 
                 reset={resetGroceryItems}
@@ -68,9 +130,10 @@ function App() {
 
                 <div>
                     {groceryItems.map(item =>
-                        <ListItem key={item.id}item={item}/>
+
+                        <ListItem key={item.id}  delGroceryItem={delGroceryItem} item={item} buyItem={handleBuyItem}/>
+
                     )}
-                    
                 </div>
             </main>
         </div>
