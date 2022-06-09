@@ -4,6 +4,7 @@ function ListForm({AddItem}) {
     const [ quantity, setQuanity] = useState('')
     const [unit, setUnit] = useState('')
     const [inputName, setInputName] = useState('')
+  
     return (
         <div>
             <h2>Add Items</h2>
@@ -11,6 +12,7 @@ function ListForm({AddItem}) {
                 <div>
                     <label>Item:</label>
                     <input
+                    value={inputName}
                         onChange={(event) => {
                             setInputName(event.target.value)
                             console.log(inputName)
@@ -21,6 +23,7 @@ function ListForm({AddItem}) {
                 <div>
                     <label>Quantity:</label>
                     <input
+                        value={quantity}
                         onChange={(event) =>{
                             setQuanity(event.target.value)
                             console.log(quantity)
@@ -29,6 +32,7 @@ function ListForm({AddItem}) {
                     />
                     <label>Unit:</label>
                     <input
+                        value={unit}
                         onChange={(event) => {
                             setUnit(event.target.value)
                             console.log(unit)
@@ -40,6 +44,9 @@ function ListForm({AddItem}) {
                     <button onClick={(evt) =>{
                         evt.preventDefault();
                         AddItem(inputName, quantity, unit)
+                        setInputName('');
+                        setQuanity('');
+                        setUnit('');
                     }}>Add Item</button>
                  </div>
             </form>

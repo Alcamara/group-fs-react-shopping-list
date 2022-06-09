@@ -28,8 +28,8 @@ function App() {
         }).then(()=>{
             console.log('Delete request worked');
             getGroceryItems()
-        }).then((err)=>{
-            console.log('Delete request failed');
+        }).catch((err)=>{
+            console.log('Delete request failed',err);
         })
     }
 
@@ -55,17 +55,19 @@ function App() {
             data:{
                 name: nameInput,
                 quantity: Number(quantity),
-                unit: unit
+                unity: unit
 
             }
         })
         .then((results) => {
             console.log('POST results', results)
             getGroceryItems()
+            
         })
         .catch((err) => {
             console.log('POST failed', err)
         })
+        
     }
 
     function handleBuyItem(itemId){
