@@ -26,7 +26,7 @@ function App() {
             url:'/groceries/'+id,
             method:'DELETE'
         }).then(()=>{
-            console.log('Delete request worked');
+            
             getGroceryItems()
         }).then((err)=>{
             console.log('Delete request failed');
@@ -128,7 +128,7 @@ function App() {
                 clear={clearGroceryItems}
                 />
 
-                <div>
+                <div className='display-list'>
                     {groceryItems.map(item =>
 
                         <ListItem key={item.id}  delGroceryItem={delGroceryItem} item={item} buyItem={handleBuyItem}/>
