@@ -15,4 +15,20 @@ router.get('/', (req, res) => {
     });
 });
 
+router.post('/', (req,res) =>{
+    const queryText = `
+        INSERT INTO "list" ("name", "quantity", "unity", "purchaseStatus")
+        VALUES ($1, $2, $3, $4)`
+    pool.query(queryText, [req.body.name, req.body.quantity, req.body.unity, false])
+        .then(res =>{
+            console.log('list post success');
+            res.sendStatus(201);
+        })
+        .catch(err =>{
+            console.log('err in post to list', err);
+            res.sendStatus(500);
+        })
+})
+
+
 module.exports = router;
