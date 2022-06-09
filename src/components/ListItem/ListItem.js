@@ -1,16 +1,24 @@
 
 
-function ListItem({ item }) {
-
+function ListItem({ item, buyItem }) {
+    function handlePurchase(evt){
+        evt.preventDefault();
+        buyItem(item.id);
+    }
 
     return (
         <div className="grocery">
             <p>{item.name}</p>
             <p>{item.quantity}{item.unity}</p>
+            { item.purchaseStatus ? 
+            <span>Purchased</span>:
             <span>
-                <button>Buy</button>
+                <button onClick={handlePurchase}>Buy</button>
                 <button>Remove</button>
             </span>
+            
+            }
+            
         </div>
     );
 
