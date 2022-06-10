@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import './ListForm.css'
 
 function ListForm({AddItem}) {
     const [ quantity, setQuanity] = useState('')
@@ -8,16 +9,17 @@ function ListForm({AddItem}) {
     return (
         <div>
             <h2>Add Items</h2>
-            <form>
+            <form className='form'>
                 <div>
                     <label>Item:</label>
                     <input
-                    value={inputName}
+                        value={inputName}
                         onChange={(event) => {
                             setInputName(event.target.value)
                             console.log(inputName)
                         }}
                         type='text'
+                        className='item'
                     required/>
                 </div>
                 <div>
