@@ -38,7 +38,7 @@ router.put('/', (req, res) => {
 //This is the DELETE route 
 router.delete('/', (req, res) => {
     const sqlQuery = `
-        DELETE FROM list
+        
     `;
     pool.query(sqlQuery, )
         .then(() => {

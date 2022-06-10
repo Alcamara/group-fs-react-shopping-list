@@ -18,7 +18,7 @@ function ListForm({AddItem}) {
                             console.log(inputName)
                         }}
                         type='text'
-                    />
+                    required/>
                 </div>
                 <div>
                     <label>Quantity:</label>
@@ -29,7 +29,7 @@ function ListForm({AddItem}) {
                             console.log(quantity)
                         }}
                         type='text'
-                    />
+                    required/>
                     <label>Unit:</label>
                     <input
                         value={unit}
@@ -38,7 +38,7 @@ function ListForm({AddItem}) {
                             console.log(unit)
                         }}
                         type='text'
-                    />
+                    required/>
                 </div>
                  <div>
                     <button onClick={(evt) =>{

@@ -10,6 +10,7 @@ import './App.css';
 import ListItem from '../ListItem/ListItem'
 import ListHeader from '../ListHeader/ListHeader.jsx';
 import ListForm from '../ListForm/ListForm.jsx';
+import swal from 'sweetalert';
 
 function App() {
     //created state
@@ -47,7 +48,9 @@ function App() {
     }
     
     function AddItem(nameInput, quantity, unit){
-        
+        if(nameInput ===''|| quantity === '' || unit ===''){
+            swal('All fields are required')
+        } else{
         console.log('In AddItem');
         axios({
             url:'/groceries',
@@ -67,7 +70,8 @@ function App() {
         .catch((err) => {
             console.log('POST failed', err)
         })
-        
+
+        }
     }
 
     function handleBuyItem(itemId){
