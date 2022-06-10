@@ -113,6 +113,23 @@ router.put('/buy-item/:id', (req,res) =>{
 
 })
 
+router.put('/edit-item/:id', (req,res) =>{
+    const queryText =`
+    UPDATE "list"
+    SET ("name", "quantity", "unity") = ($2, $3, $4)
+    WHERE id = $1;`
+
+    pool.query(queryText, [req.params.id, req.body.name, req.body.quantity, req.body.unity])
+        .then(() =>{
+            console.log('edit item success');
+            res.sendStatus(201);
+        })
+        .catch((err) =>{
+            console.log('update failed', err);
+            res.sendStatus(500);
+        })
+})
+
 
 
 module.exports = router;
