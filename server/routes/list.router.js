@@ -51,6 +51,10 @@ router.delete('/', (req, res) => {
 }); 
 
 router.post('/', (req,res) =>{
+    if (req.body.name === '' || req.body.quantity === ''|| req.body.unity === ''){
+        res.send('please input all fields');
+        return false;
+    }
     const queryText = `
         INSERT INTO "list" ("name", "quantity", "unity", "purchaseStatus")
         VALUES ($1, $2, $3, $4)`
